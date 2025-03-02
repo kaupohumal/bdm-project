@@ -5,3 +5,9 @@ mnt/.ipython
 mnt/.jupyter
 mnt/.local
 mnt/.npm
+mnt/.cache
+mnt/.dotnet
+mnt/.ssh
+mnt/.vscode-server
+mnt/.bash_history
+mnt/.gitconfig
