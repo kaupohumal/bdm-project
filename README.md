@@ -39,6 +39,8 @@ Since the geospatial data is relatively small compared to the rides dataset, we 
 
 We also cached the `rides_df` dataset after the pre-processing steps to speed up lookup and compute for the four later queries. Just like broadcasting, caching increases lookup speed, which improves query speed.
 
+---
+
 ### Query 1: Utilization Rate
 
 Query 1 calculates the **utilization rate per driver**, which measures the proportion of time drivers spend on active rides versus idle time.
@@ -54,6 +56,8 @@ Finally, the query calculates the utilization rate as the ratio of active time t
 ![query1-chart2](./images/driver_utilization_rates_chart.png)
 
 Window functions (`Window.partitionBy("hack_license").orderBy("pickup_unix")`) were used in Query 1 to efficiently calculate each driver's idle time. This saved removed the need for any standalone operations which would increase overhead compute.
+
+---
 
 ### Query 2: Average Time to Find Next Fare per Destination Borough
 
