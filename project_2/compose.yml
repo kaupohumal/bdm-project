@@ -1,0 +1,40 @@
+name: bdm-project-2
+
+services:
+
+  pyspark-kafka:
+    build: .
+    container_name: pyspark-kafka # custom container name 
+    command: start-notebook.sh --NotebookApp.token='' # removes the need for access token. Only do this for development work in your local machine
+    ports:
+      - "8888:8888" # Jupyter UI
+      - "4040:4040" # Spark UI. Every new context is on an incremental port (4041, 4042, etc)
+    volumes:
+      - "./mnt/:/home/jovyan/" # map a local folder to the Jupyter workspace folder
+      - "../.data/:/home/jovyan/input/" # map a local folder to the Jupyter workspace folder
+      
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:9092,OUTSIDE://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9092,OUTSIDE://localhost:9093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
