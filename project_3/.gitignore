@@ -1,0 +1,16 @@
+../.idea
+
+mnt/.ipynb_checkpoints
+mnt/.ipython
+mnt/.jupyter
+mnt/.local
+mnt/.npm
+mnt/.cache
+mnt/.dotnet
+mnt/.ssh
+mnt/.vscode-server
+mnt/.bash_history
+mnt/.gitconfig
+mnt/input/**
+mnt/.ivy2
+mnt/output
