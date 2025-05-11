@@ -1,3 +1,5 @@
 .data
 project_4/work/data/clean_2009.parquet
 project_4/work/data/2009.csv
+project_4/work/data/2010.csv
+project_4/work/data/full_pipeline_model

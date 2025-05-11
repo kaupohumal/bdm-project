@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.feature.OneHotEncoderModel","timestamp":1746952378882,"sparkVersion":"3.5.3","uid":"OneHotEncoder_8a63ef230466","paramMap":{"inputCol":"Month_idx","outputCol":"Month_vec","handleInvalid":"keep"},"defaultParamMap":{"outputCol":"OneHotEncoder_8a63ef230466__output","dropLast":true,"handleInvalid":"error"}}
